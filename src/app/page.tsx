@@ -29,37 +29,36 @@ export default function Home() {
         <h1><a href="#contactme" className={`z-50 hover:cursor-pointer ${current === 3 ? "text-primary border-b-2 border-primary" : ""}`}>Contact me</a></h1>
       </div>
 
-      <TrailEffect>
+      <TrailEffect current={current}>
         <IsInView setCurrent={setCurrent} id={0}>
           <div id={sections[0]} className="flex items-center justify-center w-[100vw] h-[100vh] z-20">
             <h1 className="text-2xl z-20" style={{ userSelect: "none"}}>Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer</h1>
           </div>
         </IsInView>
+        <IsInView setCurrent={setCurrent} id={1}>
+          <div id={sections[1]} className="flex items-center justify-center w-[100vw] h-[100vh]">
+            <div>
+              <SendMail />
+            </div>
+          </div>
+        </IsInView>
+
+        <IsInView setCurrent={setCurrent} id={2}>
+          <div id={sections[2]} className="flex items-center justify-center w-[100vw] h-[100vh]">
+            <div>
+              <SendMail />
+            </div>
+          </div>
+        </IsInView>
+
+        <IsInView setCurrent={setCurrent} id={3}>
+          <div id={sections[3]} className="flex items-center justify-center w-[100vw] h-[100vh]">
+            <div>
+              <SendMail />
+            </div>
+          </div>
+        </IsInView>
       </TrailEffect>
-
-      <IsInView setCurrent={setCurrent} id={1}>
-        <div id={sections[1]} className="flex items-center justify-center w-[100vw] h-[100vh]">
-          <div>
-            <SendMail />
-          </div>
-        </div>
-      </IsInView>
-
-      <IsInView setCurrent={setCurrent} id={2}>
-        <div id={sections[2]} className="flex items-center justify-center w-[100vw] h-[100vh]">
-          <div>
-            <SendMail />
-          </div>
-        </div>
-      </IsInView>
-
-      <IsInView setCurrent={setCurrent} id={3}>
-        <div id={sections[3]} className="flex items-center justify-center w-[100vw] h-[100vh]">
-          <div>
-            <SendMail />
-          </div>
-        </div>
-      </IsInView>
     </main>
   );
 }
