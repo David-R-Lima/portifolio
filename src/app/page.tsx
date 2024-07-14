@@ -23,16 +23,16 @@ export default function Home() {
       </div>
 
       <div className="fixed flex justify-end items-center w-[100vw] h-[10vh] space-x-4 p-6">
-        <h1><a href="#home" className={`${current === 0 ? "text-primary border-b-2 border-primary" : ""}`}>Home</a></h1>
-        <h1><a href="#aboutme" className={`${current === 1 ? "text-primary border-b-2 border-primary" : ""}`}>About me</a></h1>
-        <h1><a href="#projects" className={`${current === 2 ? "text-primary border-b-2 border-primary" : ""}`}>Projects</a></h1>
-        <h1><a href="#contactme" className={`${current === 3 ? "text-primary border-b-2 border-primary" : ""}`}>Contact me</a></h1>
+        <h1><a href="#home" className={`z-50 hover:cursor-pointer ${current === 0 ? "text-primary border-b-2 border-primary" : ""}`}>Home</a></h1>
+        <h1><a href="#aboutme" className={`z-50 hover:cursor-pointer ${current === 1 ? "text-primary border-b-2 border-primary" : ""}`}>About me</a></h1>
+        <h1><a href="#projects" className={`z-50 hover:cursor-pointer ${current === 2 ? "text-primary border-b-2 border-primary" : ""}`}>Projects</a></h1>
+        <h1><a href="#contactme" className={`z-50 hover:cursor-pointer ${current === 3 ? "text-primary border-b-2 border-primary" : ""}`}>Contact me</a></h1>
       </div>
 
       <TrailEffect>
         <IsInView setCurrent={setCurrent} id={0}>
           <div id={sections[0]} className="flex items-center justify-center w-[100vw] h-[100vh] z-20">
-            <h1 className="text-2xl z-20">Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer</h1>
+            <h1 className="text-2xl z-20" style={{ userSelect: "none"}}>Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer</h1>
           </div>
         </IsInView>
       </TrailEffect>
