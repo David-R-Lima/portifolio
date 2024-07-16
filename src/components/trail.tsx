@@ -1,3 +1,4 @@
+import { useTrail } from '@/context/useTrail';
 import React, { useState, useEffect, useRef, ReactNode } from 'react';
 
 interface Props {
@@ -14,54 +15,45 @@ interface TrailDot {
 type PermanentTrailDot = TrailDot[];
 
 export function TrailEffect({children, current}: Props) {
-  const [trail, setTrail] = useState<TrailDot[]>([]);
-  const [permanentTrail, setPermanentTrail] = useState<PermanentTrailDot[]>([]);
-  const [isToMark, setIsToMark] = useState<boolean>(false);
-
-  const trailLength = 100;
-  const trailDuration = 1000;
+  const { trail, permanentTrail, setTrail, setPermanentTrail, config, toMark, setToMark, setTrails } = useTrail()
 
   const trailRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
-
     const handleMouseMove = (event: MouseEvent) => {
         const { pageX, pageY } = event;
         updateTrail(pageX, pageY);
     };
 
     const handleTouchMove = (event: TouchEvent) => {
-    const { pageX, pageY } = event.touches[0];
-    updateTrail(pageX, pageY);
+      const { pageX, pageY } = event.touches[0];
+      updateTrail(pageX, pageY);
     };
 
     const updateTrail = (pageX: number, pageY: number) => {
       const timestamp = Date.now();
 
-      if (isToMark) {
-        setPermanentTrail((prevTrails) => {
-          const updatedTrails = [...prevTrails];
-          updatedTrails[updatedTrails.length - 1].push({ x: pageX + current, y: pageY });
-          return updatedTrails;
-        });
+      if (toMark) {
+        setPermanentTrail({
+          x: pageX + current,
+          y: pageY
+        })
       } else {
-        setTrail((prevTrail) => {
-          const newTrail = [...prevTrail, { x: pageX, y: pageY, timestamp }];
-          if (newTrail.length > trailLength) {
-            newTrail.shift();
-          }
-          return newTrail;
-        });
+        setTrail({
+          x: pageX,
+          y: pageY,
+          timestamp: timestamp
+        })
       }
     };
 
     const handleMouseDown = () => {
-      setIsToMark(true);
-      setPermanentTrail((prevTrails) => [...prevTrails, []]); // Start a new permanent trail
+      setToMark(true);
+      permanentTrail.push([])// Start a new permanent trail
     };
 
     const handleMouseUp = () => {
-      setIsToMark(false);
+      setToMark(false);
     };
 
     window.addEventListener('mousedown', handleMouseDown);
@@ -85,16 +77,17 @@ export function TrailEffect({children, current}: Props) {
       window.removeEventListener('touchend', handleMouseUp);
       window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [trailLength, isToMark, current]);
+  }, [config, toMark, current, setPermanentTrail, setTrail, setToMark, permanentTrail]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       const now = Date.now();
-      setTrail((prevTrail) => prevTrail.filter(dot => now - (dot.timestamp || 0) < trailDuration));
+      const temp = trail.filter(dot => now - (dot.timestamp || 0) < config.duration)
+      setTrails(temp)
     }, 100);
 
     return () => clearInterval(interval);
-  }, [trailDuration]);
+  }, [config, trail, setTrail, setTrails]);
 
   return (
     <div className="w-full h-full">
