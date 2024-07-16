@@ -24,6 +24,7 @@ interface TrialState {
     setTrails:(trail: Trail[]) => void
     permanentTrail: Trail[][]
     setPermanentTrail: (trail: Trail) => void
+    clearPermanentTrail: () => void
     setConfig: (config: Config) => void
     toMark: boolean
     setToMark: (toMark: boolean) => void
@@ -33,14 +34,14 @@ export const useTrail = create<TrialState>((set, get) => ({
     permanentTrail: [],
     trail: [],
     config: {
-        color: "#FF0000",
+        color: "#ffff66",
         width: 1,
         height: 1,
         opacity: 1,
         radius: 2,
         speed: 1,
-        duration: 1000,
-        length: 50
+        duration: 200,
+        length: 10
     },
     toMark: false,
     setConfig: (config: Config) => {
@@ -64,6 +65,9 @@ export const useTrail = create<TrialState>((set, get) => ({
         previousTrails[previousTrails.length - 1].push({ x: trail.x, y: trail.y });
         
         set({ permanentTrail: previousTrails })
+    },
+    clearPermanentTrail: () => {
+        set({ permanentTrail: [] })
     },
     setToMark: (toMark: boolean) => {
         set({ toMark })

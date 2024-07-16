@@ -1,4 +1,5 @@
 import { useTrail } from '@/context/useTrail';
+import { Pencil, Trash } from 'lucide-react';
 import React, { useState, useEffect, useRef, ReactNode } from 'react';
 
 interface Props {
@@ -12,10 +13,8 @@ interface TrailDot {
   timestamp?: number;
 }
 
-type PermanentTrailDot = TrailDot[];
-
 export function TrailEffect({children, current}: Props) {
-  const { trail, permanentTrail, setTrail, setPermanentTrail, config, toMark, setToMark, setTrails } = useTrail()
+  const { trail, permanentTrail, setTrail, setPermanentTrail, config, toMark, setToMark, setTrails, clearPermanentTrail } = useTrail()
 
   const trailRef = useRef<SVGSVGElement>(null);
 
@@ -35,7 +34,7 @@ export function TrailEffect({children, current}: Props) {
 
       if (toMark) {
         setPermanentTrail({
-          x: pageX + current,
+          x: pageX,
           y: pageY
         })
       } else {
@@ -88,22 +87,23 @@ export function TrailEffect({children, current}: Props) {
 
     return () => clearInterval(interval);
   }, [config, trail, setTrail, setTrails]);
+  console.log('config: ', config);
 
   return (
     <div className="w-full h-full">
       {children}
-      <svg ref={trailRef} className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible">
+      <svg ref={trailRef} className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible" style={{ userSelect: "none"}}>
         {trail.length > 1 && (
           <path
             d={`M ${trail.map(({ x, y }) => `${x} ${y}`).join(' L ')}`}
             fill="none"
-            className="stroke-primary"
+            style={{stroke: config.color}}
             strokeWidth="2"
           />
         )}
       </svg>
       {permanentTrail.map((trail, index) => (
-        <svg key={index} className="absolute top-0 left-0 w-full h-full pointer-events-none">
+        <svg key={index} className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible" style={{ userSelect: "none"}}>
           {trail.length > 1 && (
             <path
               d={`M ${trail.map(({ x, y }) => `${x} ${y}`).join(' L ')}`}
@@ -114,6 +114,12 @@ export function TrailEffect({children, current}: Props) {
           )}
         </svg>
       ))}
+      <div className='absolute top-6 left-6 flex space-x-2'>
+        <Pencil className='size-6'></Pencil>
+        <Trash className='size-6 hover:cursor-pointer' onClick={() => {
+          clearPermanentTrail()
+        }}></Trash>
+      </div>
     </div>
   );
 };
