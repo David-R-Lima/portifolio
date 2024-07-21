@@ -17,12 +17,17 @@ interface Trail {
     timestamp?: number;
 }
 
+interface PermanentTrail {
+    trail: Trail[]
+    config: Config
+}
+
 interface TrialState {
     config: Config
     trail: Trail[]
     setTrail: (trail: Trail) => void
     setTrails:(trail: Trail[]) => void
-    permanentTrail: Trail[][]
+    permanentTrail: PermanentTrail[]
     setPermanentTrail: (trail: Trail) => void
     clearPermanentTrail: () => void
     setConfig: (config: Config) => void
@@ -61,8 +66,10 @@ export const useTrail = create<TrialState>((set, get) => ({
     },
     setPermanentTrail: (trail: Trail) => {
         const previousTrails = get().permanentTrail
+        const currentConfig = get().config
 
-        previousTrails[previousTrails.length - 1].push({ x: trail.x, y: trail.y });
+        previousTrails[previousTrails.length - 1].config = currentConfig
+        previousTrails[previousTrails.length - 1].trail.push({ x: trail.x, y: trail.y });
         
         set({ permanentTrail: previousTrails })
     },

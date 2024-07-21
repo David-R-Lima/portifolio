@@ -1,6 +1,7 @@
 import { useTrail } from '@/context/useTrail';
 import { Pencil, Trash } from 'lucide-react';
 import React, { useState, useEffect, useRef, ReactNode } from 'react';
+import { TrailConfig } from './trail-config';
 
 interface Props {
     children: ReactNode
@@ -48,7 +49,10 @@ export function TrailEffect({children, current}: Props) {
 
     const handleMouseDown = () => {
       setToMark(true);
-      permanentTrail.push([])// Start a new permanent trail
+      permanentTrail.push({
+        config: config,
+        trail: []
+      })// Start a new permanent trail
     };
 
     const handleMouseUp = () => {
@@ -87,7 +91,6 @@ export function TrailEffect({children, current}: Props) {
 
     return () => clearInterval(interval);
   }, [config, trail, setTrail, setTrails]);
-  console.log('config: ', config);
 
   return (
     <div className="w-full h-full">
@@ -97,25 +100,31 @@ export function TrailEffect({children, current}: Props) {
           <path
             d={`M ${trail.map(({ x, y }) => `${x} ${y}`).join(' L ')}`}
             fill="none"
-            style={{stroke: config.color}}
-            strokeWidth="2"
+            style={{
+              stroke: config.color,
+              strokeWidth: config.width,
+              strokeOpacity: config.opacity
+            }}
           />
         )}
       </svg>
-      {permanentTrail.map((trail, index) => (
+      {permanentTrail.map((trails, index) => (
         <svg key={index} className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible" style={{ userSelect: "none"}}>
-          {trail.length > 1 && (
+          {trails.trail?.length > 1 && (
             <path
-              d={`M ${trail.map(({ x, y }) => `${x} ${y}`).join(' L ')}`}
+              d={`M ${trails.trail.map(({ x, y }) => `${x} ${y}`).join(' L ')}`}
               fill="none"
-              className="stroke-primary"
-              strokeWidth="2"
+              style={{
+                stroke: trails.config.color,
+                strokeWidth: trails.config.width,
+                strokeOpacity: trails.config.opacity
+              }}
             />
           )}
         </svg>
       ))}
       <div className='absolute top-6 left-6 flex space-x-2'>
-        <Pencil className='size-6'></Pencil>
+        <TrailConfig></TrailConfig>
         <Trash className='size-6 hover:cursor-pointer' onClick={() => {
           clearPermanentTrail()
         }}></Trash>
