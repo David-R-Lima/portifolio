@@ -9,7 +9,9 @@ export async function sendMail({
     const res = await fetch(process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL ?? "", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: message,
+      body: JSON.stringify({
+        content: `De: ${email} / Nome: ${name}. Mensagem: ${message}`,
+      }),
     })
     console.log(res)
   } catch (error) {
