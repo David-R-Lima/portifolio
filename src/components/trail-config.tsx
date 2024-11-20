@@ -9,19 +9,38 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 import { useTrail } from "@/context/useTrail"
-import { Wrench } from "lucide-react"
+import { Settings, Wrench } from "lucide-react"
 import { HexColorPicker } from "react-colorful"
 import { Input } from "./ui/input"
 import { Slider } from "@/components/ui/slider"
+import { useEffect, useState } from "react"
 
   
 
 export function TrailConfig() {
     const { config, setConfig } = useTrail()
+    const [open, setOpen] = useState(false)
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+          if (event.ctrlKey && event.shiftKey && event.key === 'S') {
+            event.preventDefault();
+            setOpen((prev) => !prev);
+          }
+        };
+    
+        // Add the event listener
+        window.addEventListener('keydown', handleKeyDown);
+    
+        // Clean up the event listener on unmount
+        return () => {
+          window.removeEventListener('keydown', handleKeyDown);
+        };
+      }, []);
     return (
-        <Dialog>
-            <DialogTrigger><Wrench></Wrench></DialogTrigger>
-            <DialogContent className="z-50">
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger><Settings></Settings></DialogTrigger>
+            <DialogContent className="z-50 bg-black">
                 <div>
                     <HexColorPicker onChange={(e) => {
                         setConfig({...config, color: e })

@@ -123,7 +123,7 @@ export function TrailEffect({children, current}: Props) {
           )}
         </svg>
       ))}
-      <div className='absolute top-6 left-6 flex space-x-2'>
+      <div className='fixed top-0 left-0 flex flex-col space-y-4 items-center bg-slate-900 p-4 rounded-br-2xl'>
         <TrailConfig></TrailConfig>
         <Trash className='size-6 hover:cursor-pointer' onClick={() => {
           clearPermanentTrail()
