@@ -22,7 +22,7 @@ export function TrailConfig() {
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
-        const handleKeyDown = (event) => {
+        const handleKeyDown = (event: KeyboardEvent) => {
           if (event.ctrlKey && event.shiftKey && event.key === 'S') {
             event.preventDefault();
             setOpen((prev) => !prev);
