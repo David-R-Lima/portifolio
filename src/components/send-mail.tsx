@@ -33,21 +33,29 @@ export function SendMail() {
       }
 
     return (
-        <form onSubmit={handleSubmit(handleSubmitForm)} style={{ userSelect: "none"}}>
-            <div className="flex flex-col space-y-2 w-[30rem]" style={{ userSelect: "none"}}>
-                <Input type="text" placeholder="Name" style={{ userSelect: "none"}} {...register('name')}/>
-                {errors.name && (
-                    <p className="text-red-500">{errors.name.message}</p>
-                )}
-                <Input type="email" placeholder="Email" style={{ userSelect: "none"}} {...register('email')} />
-                {errors.email && (
-                    <p className="text-red-500">{errors.email.message}</p>
-                )}
-                <Textarea placeholder="Message" style={{ userSelect: "none"}} {...register('message')} />
-                {errors.message && (
-                    <p className="text-red-500">{errors.message.message}</p>
-                )}
-                <button type="submit" style={{ userSelect: "none"}}>Send</button>
+        <form onSubmit={handleSubmit(handleSubmitForm)} style={{ userSelect: "none"}} className="t">
+            <div className="flex flex-row space-x-2 w-[50vw] bg-zinc-900 p-4 rounded-lg" style={{ userSelect: "none"}}>
+              <div className="space-y-2">
+                  <Input className="bg-black" type="text" placeholder="Name" style={{ userSelect: "none"}} {...register('name')}/>
+                  {errors.name && (
+                      <p className="text-red-500">{errors.name.message}</p>
+                  )}
+                  <Input className="bg-black" type="email" placeholder="Email" style={{ userSelect: "none"}} {...register('email')} />
+                  {errors.email && (
+                      <p className="text-red-500">{errors.email.message}</p>
+                  )}
+                  <Input className="bg-black" type="text" placeholder="Phone" style={{ userSelect: "none"}} {...register('email')} />
+                  {errors.email && (
+                      <p className="text-red-500">{errors.email.message}</p>
+                  )}
+              </div>
+              <Textarea className="bg-black h-auto" placeholder="Message" style={{ userSelect: "none"}} {...register('message')} />
+              {errors.message && (
+                  <p className="text-red-500">{errors.message.message}</p>
+              )}
+            </div>
+            <div className="bg-zinc-900 my-2 p-2 px-4 rounded-lg max-w-[15%] hover:text-primary hover:cursor-pointer">
+              <button type="submit" style={{ userSelect: "none"}}>Send</button>
             </div>
         </form>
     )

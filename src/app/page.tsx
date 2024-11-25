@@ -2,6 +2,7 @@
 
 import { AboutMe } from "@/components/about-me";
 import { IsInView } from "@/components/is-in-view";
+import { CarouselSize } from "@/components/projects";
 import { SendMail } from "@/components/send-mail";
 import { TrailEffect } from "@/components/trail";
 import { ChevronsDown, ChevronsUp } from "lucide-react";
@@ -47,7 +48,7 @@ export default function Home() {
         <IsInView setCurrent={setCurrent} id={2}>
           <div id={sections[2]} className="flex items-center justify-center w-[100vw] h-[100vh]">
             <div>
-              <SendMail />
+              <CarouselSize />
             </div>
           </div>
         </IsInView>
