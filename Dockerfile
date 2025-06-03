@@ -1,24 +1,22 @@
-FROM node:22-slim
+FROM node:20-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+ENV NODE_ENV="production"
 
+COPY . /app
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
+RUN npm install -g pnpm@8.4.0 && pnpm install
 
-# Copy package files
-COPY package.json pnpm-lock.yaml* ./
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
-# Install dependencies
-RUN pnpm install
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm run build
 
-# Copy rest of the app
-COPY . .
+FROM base
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=build /app /app
 
-# Build the app
-RUN pnpm build
-
-# Set environment to production
-ENV NODE_ENV=production
-
-# Start the app
-CMD ["pnpm", "start"]
+CMD [ "pnpm", "start" ]
