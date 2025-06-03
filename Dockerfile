@@ -1,34 +1,25 @@
-# Install dependencies only when needed
-FROM node:22-slim AS deps
+FROM node:22-slim
 
+# Set working directory
 WORKDIR /app
 
-# Prevents re-installing node_modules unless package.json or lockfile changes
-COPY package.json package-lock.json* pnpm-lock.yaml* ./
+# Install pnpm
+RUN npm install -g pnpm
 
-# Use pnpm if available
-RUN npm install -g pnpm && pnpm install --frozen-lockfile
+# Copy dependency files
+COPY package.json pnpm-lock.yaml* ./
 
-# Rebuild the source code only when needed
-FROM node:22-slim AS builder
+# Install dependencies
+RUN pnpm install --frozen-lockfile
 
-WORKDIR /app
-
-COPY --from=deps /app/node_modules ./node_modules
+# Copy the rest of the app
 COPY . .
 
+# Build the Next.js app
 RUN pnpm build
 
-# Production image
-FROM node:22-slim AS runner
-
-WORKDIR /app
-
+# Set environment to production
 ENV NODE_ENV=production
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-
+# Start the app
 CMD ["pnpm", "start"]
