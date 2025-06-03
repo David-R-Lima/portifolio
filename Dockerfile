@@ -1,21 +1,20 @@
 FROM node:22-slim
 
-# Set working directory
 WORKDIR /app
 
 # Install pnpm
 RUN npm install -g pnpm
 
-# Copy dependency files
+# Copy package files
 COPY package.json pnpm-lock.yaml* ./
 
 # Install dependencies
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
-# Copy the rest of the app
+# Copy rest of the app
 COPY . .
 
-# Build the Next.js app
+# Build the app
 RUN pnpm build
 
 # Set environment to production
