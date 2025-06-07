@@ -2,10 +2,11 @@
 
 import { AboutMe } from "@/components/about-me";
 import { IsInView } from "@/components/is-in-view";
+import { NowListening } from "@/components/now-listening";
 import { CarouselSize } from "@/components/projects";
 import { SendMail } from "@/components/send-mail";
 import { TrailEffect } from "@/components/trail";
-import { ChevronsDown, ChevronsUp } from "lucide-react";
+// import { ChevronsDown, ChevronsUp } from "lucide-react";
 import { useState } from "react";
 
 const sections = ["home", "aboutme", "projects", "contactme"]
@@ -15,14 +16,14 @@ export default function Home() {
 
   return (
     <main>
-      <div className={`fixed flex flex-col items-center left-2 border-2 top-28 p-1 ${current === 0 ? "opacity-0" : "opacity-100"} transition-opacity`}>
+      {/* <div className={`fixed flex flex-col items-center left-2 border-2 top-28 p-1 ${current === 0 ? "opacity-0" : "opacity-100"} transition-opacity`}>
         <a href={`#${sections[current === 0 ? 0 : current - 1]}`}><ChevronsUp></ChevronsUp></a>
         <div className="h-[500px] p-2">
           <div className={`bg-primary w-[1rem] h-[4rem] rounded-sm transition-all z-20`} style={{ marginTop: `${current * 140}px`, userSelect: "all" }}>
           </div>
         </div>
         <a href={`#${sections[current === 3 ? 3 : current + 1]}`}><ChevronsDown></ChevronsDown></a>
-      </div>
+      </div> */}
 
       <div className="fixed flex justify-end items-center w-[100vw] h-[10vh] space-x-4 p-6">
         <h1><a href="#home" className={`z-50 hover:cursor-pointer ${current === 0 ? "text-primary border-b-2 border-primary" : ""}`}>Home</a></h1>
@@ -61,6 +62,10 @@ export default function Home() {
           </div>
         </IsInView>
       </TrailEffect>
+
+      <div className="sticky bottom-0 w-[100vw] flex items-end justify-end">
+        <NowListening></NowListening>
+      </div>
     </main>
   );
 }
