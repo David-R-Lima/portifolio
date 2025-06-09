@@ -29,8 +29,9 @@ export function NowListening() {
                     </div>
                     <div className="min-w-[250px] max-w-[280px] overflow-hidden whitespace-nowrap">
                         <a href={data.song.youtube_url} target="_blank" rel="noopener noreferrer" className={`inline-block hover:underline hover:text-primary ${data.song.title.length > 25 ? "animate-scroll" : ""}`}>{data.song.title}</a>
-                        <a href={data.song.youtube_url} target="_blank" rel="noopener noreferrer" className={`inline-block px-4 hover:underline hover:text-primary ${data.song.title.length > 25 ? "animate-scroll" : ""}`}>{data.song.title}</a>
-
+                        {data.song.title.length > 25 && (
+                            <a href={data.song.youtube_url} target="_blank" rel="noopener noreferrer" className={`inline-block px-4 hover:underline hover:text-primary ${data.song.title.length > 25 ? "animate-scroll" : ""}`}>{data.song.title}</a>
+                        )} 
                         <h1>{data.song.artist}</h1>
                     </div>
                 </div>
