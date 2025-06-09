@@ -3,8 +3,8 @@ import * as React from "react"
 export function Projects() {
   return (
     <div className="flex flex-col space-y-20">
-      <div className="p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-r-2 border-primary">
-        <h1 className="italic text-primary">A Youtube fetching api</h1>
+      <div className="p-4 max-w-[90vw] space-y-2 border-b-4 border-r-4 rounded-br-lg border-primary">
+        <h1 className="font-bold italic text-primary text-xl">A Youtube fetching api</h1>
         <div>
           Built with NestJS, this API uses <code>yt-dlp</code> to download YouTube videos and extract their audio and metadata. It also supports playlist creation, liking songs, and streaming downloaded files. Additionally, you can control active client playback via HTTP requests to pause, play, or skip tracks.
         </div>
@@ -21,8 +21,8 @@ export function Projects() {
           <p>Repo: </p> <a className="underline hover:text-primary" href="https://github.com/David-R-Lima/yt">https://github.com/David-R-Lima/yt</a>
         </div>
       </div>
-      <div className="p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-l-2 border-primary">
-        <h1 className="italic text-primary">A Client for the Youtube fetching api</h1>
+      <div className="p-4 max-w-[90vw] space-y-2 border-b-4 border-l-4 rounded-bl-lg border-primary">
+        <h1 className="font-bold italic text-primary text-xl">A Client for the Youtube fetching api</h1>
         <div>
           Built with React + vite, this client integrates with the previously mentioned API to provide a user-friendly interface for downloading and streaming content. It allows users to search for videos, create playlists, and manage their downloaded content. It also has a built-in music player for streaming audio.
         </div>
@@ -39,8 +39,8 @@ export function Projects() {
           <p>Repo: </p> <a className="underline hover:text-primary" href="https://github.com/David-R-Lima/tauri-ui">https://github.com/David-R-Lima/tauri-ui</a>
         </div>
       </div>
-      <div className="flex flex-col p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-r-2 border-primary">
-        <h1 className="italic text-primary">A Backup api</h1>
+      <div className="flex flex-col p-4 max-w-[90vw] space-y-2 border-b-4 border-r-4 rounded-br-lg border-primary">
+        <h1 className="font-bold italic text-primary text-xl">A Backup api</h1>
         <div>
           Created using nest js, this api allows you to backup your databases and save it to a local directory, you can schedule backups, limit the amount of backups to keep, download your compacted files anywhere, and configure notifications via smtp.
         </div>

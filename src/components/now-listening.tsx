@@ -15,7 +15,7 @@ export function NowListening() {
 
     if(data) {
         return (
-            <div className="bg-primary/10 p-2 mr-6 mb-2 rounded-md">
+            <div className="bg-primary/10 p-4 rounded-md">
                 <h1 className="text-lg font-bold mb-2">Now Listening</h1>
                 <div className="flex items-center space-x-2 text-white">
                     <div>

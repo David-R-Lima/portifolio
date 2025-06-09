@@ -51,8 +51,11 @@ export default function Home() {
 
       <TrailEffect current={current} className="flex flex-col items-center justify-center" >
         <IsInView setCurrent={setCurrent} id={0}>
-          <div id={sections[0]} className="flex items-center justify-center w-[100vw] min-h-[100vh] z-20">
-            <h1 className="text-2xl z-20 text-center" style={{ userSelect: "none"}}>Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer</h1>
+          <div id={sections[0]} className="flex flex-col items-start justify-center w-[90vw] md:w-[60vw] min-h-[100vh] z-20 space-y-2">
+            <h1 className="text-4xl z-20 text-start" style={{ userSelect: "none"}}>Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer.</h1>
+            <h1 className="text-3xl font-bold text-primary">Thanks for checking out my portifolio!</h1>
+            <h1 className="text-2xl">Click here to download my <a className="underline text-primary" target="_blank" href="/resume.pdf">Resume</a>,</h1>
+            <h1 className="text-xl">or <span className="font-bold text-primary">scroll</span> down to see more about myself!</h1>
           </div>
         </IsInView>
         <IsInView setCurrent={setCurrent} id={1}>
@@ -81,7 +84,7 @@ export default function Home() {
         </IsInView>
       </TrailEffect>
 
-      <div className="sticky bottom-0 w-[100vw] flex items-end justify-end">
+      <div className="flex w-full justify-end p-6">
         <NowListening></NowListening>
       </div>
     </main>
