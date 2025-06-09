@@ -6,22 +6,40 @@ export function Projects() {
       <div className="p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-r-2 border-primary">
         <h1 className="italic text-primary">A Youtube fetching api</h1>
         <div>
-          Created using nest js, this api utilizes yt-dlp to download videos from youtube and extract its audio and metadata, you can also create playlists, like songs, and stream the donwloaded files. You can also control the active client playback via http requests to pause, play, or skip tracks.
+          Built with NestJS, this API uses <code>yt-dlp</code> to download YouTube videos and extract their audio and metadata. It also supports playlist creation, liking songs, and streaming downloaded files. Additionally, you can control active client playback via HTTP requests to pause, play, or skip tracks.
         </div>
         <div>
           Techologies used: NestJS, Prisma, PostgreSQL, Docker, yt-dlp
         </div>
         <div className="text-sm italic text-primary">
-          Obs: This api is not intended for commercial use, as it would violate copyright laws, it is intended for personal use only.
+          Note: This API is intended for personal use only. Commercial use may violate copyright laws. (depends on what you download, otherwise just breaches Youtube TOS)
         </div>
         <div className="text-sm italic text-primary">
-          Obs2: Although intended to download music videos and songs then extract audio, it can be altered to download videos and serve as a library of multitude of content.
+          Note 2: Although primarily built to download music videos and extract audio, it can be adapted to download and serve a broader range of video content.
         </div>
         <div className="flex items-center space-x-2">
           <p>Repo: </p> <a className="underline hover:text-primary" href="https://github.com/David-R-Lima/yt">https://github.com/David-R-Lima/yt</a>
         </div>
       </div>
-      <div className="flex flex-col p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-l-2 border-primary">
+      <div className="p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-l-2 border-primary">
+        <h1 className="italic text-primary">A Client for the Youtube fetching api</h1>
+        <div>
+          Built with React + vite, this client integrates with the previously mentioned API to provide a user-friendly interface for downloading and streaming content. It allows users to search for videos, create playlists, and manage their downloaded content. It also has a built-in music player for streaming audio.
+        </div>
+        <div>
+          Techologies used: React + vite, tauri, tailwindcss, zustand
+        </div>
+        <div className="text-sm italic text-primary">
+          Note: It uses the same API as the previous project, so it is also intended for personal use only.
+        </div>
+        <div className="text-sm italic text-primary">
+          Note 2: It uses Tauri to create a desktop application, allowing you to run it on Windows, Linux, and macOS. It can also be served as a normal web app, and it also uses PWA for mobile clients.
+        </div>
+        <div className="flex items-center space-x-2">
+          <p>Repo: </p> <a className="underline hover:text-primary" href="https://github.com/David-R-Lima/tauri-ui">https://github.com/David-R-Lima/tauri-ui</a>
+        </div>
+      </div>
+      <div className="flex flex-col p-4 max-w-[90vw] rounded-lg space-y-2 border-b-2 border-r-2 border-primary">
         <h1 className="italic text-primary">A Backup api</h1>
         <div>
           Created using nest js, this api allows you to backup your databases and save it to a local directory, you can schedule backups, limit the amount of backups to keep, download your compacted files anywhere, and configure notifications via smtp.

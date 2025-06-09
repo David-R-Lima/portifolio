@@ -8,11 +8,15 @@ import { ContactMe } from "@/components/contact-me";
 import { TrailEffect } from "@/components/trail";
 // import { ChevronsDown, ChevronsUp } from "lucide-react";
 import { useState } from "react";
+import { ChevronUp, Trash } from "lucide-react";
+import { TrailConfig } from "@/components/trail-config";
+import { useTrail } from "@/context/useTrail";
 
 const sections = ["home", "aboutme", "projects", "contactme"]
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
+  const { clearPermanentTrail } = useTrail()
 
   return (
     <main>
@@ -25,22 +29,34 @@ export default function Home() {
         </div>
         <a href={`#${sections[current === 3 ? 3 : current + 1]}`}><ChevronsDown></ChevronsDown></a>
       </div> */}
-
-      <div className="fixed flex justify-end items-center w-[100vw] h-[10vh] space-x-4 p-6">
+      <div className={`${current > 0 ? "flex" : "hidden"} fixed bg-primary/20 justify-end items-center w-[100vw] h-[10vh] space-x-4 p-6`}>
         <h1><a href="#home" className={`z-50 hover:cursor-pointer ${current === 0 ? "text-primary border-b-2 border-primary" : ""}`}>Home</a></h1>
         <h1><a href="#aboutme" className={`z-50 hover:cursor-pointer ${current === 1 ? "text-primary border-b-2 border-primary" : ""}`}>About me</a></h1>
         <h1><a href="#projects" className={`z-50 hover:cursor-pointer ${current === 2 ? "text-primary border-b-2 border-primary" : ""}`}>Projects</a></h1>
         <h1><a href="#contactme" className={`z-50 hover:cursor-pointer ${current === 3 ? "text-primary border-b-2 border-primary" : ""}`}>Contact me</a></h1>
       </div>
+      <div className="flex flex-col space-y-2 fixed bottom-2 left-2 bg-primary/20 rounded-lg z-20">
+        <a href="#home" className="hover:cursor-pointer hover:bg-primary/40 rounded-lg p-2">
+          <ChevronUp className="size-6" />
+        </a>
+        <div className="hover:cursor-pointer hover:bg-primary/40 rounded-lg p-2">
+          <TrailConfig></TrailConfig>
+        </div>
+        <div className="hover:cursor-pointer hover:bg-primary/40 rounded-lg p-2">
+          <Trash className="size-6" onClick={() => {
+            clearPermanentTrail()
+          }}></Trash>
+        </div>
+      </div>
 
-      <TrailEffect current={current}>
+      <TrailEffect current={current} className="flex flex-col items-center justify-center" >
         <IsInView setCurrent={setCurrent} id={0}>
-          <div id={sections[0]} className="flex items-center justify-center w-[100vw] h-[100vh] z-20">
-            <h1 className="text-2xl z-20" style={{ userSelect: "none"}}>Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer</h1>
+          <div id={sections[0]} className="flex items-center justify-center w-[100vw] min-h-[100vh] z-20">
+            <h1 className="text-2xl z-20 text-center" style={{ userSelect: "none"}}>Hello! My name is <span className="text-primary text-4xl">DAVID</span>, and I am a fullstack developer</h1>
           </div>
         </IsInView>
         <IsInView setCurrent={setCurrent} id={1}>
-          <div id={sections[1]} className="flex items-center justify-center w-[100vw] h-[100vh]">
+          <div id={sections[1]} className="flex items-center justify-center w-[100vw] min-h-[100vh]">
             <div>
               <AboutMe />
             </div>
@@ -48,7 +64,8 @@ export default function Home() {
         </IsInView>
 
         <IsInView setCurrent={setCurrent} id={2}>
-          <div id={sections[2]} className="flex items-center justify-center w-[100vw] h-[100vh]">
+          <div id={sections[2]} className="flex flex-col items-center justify-center w-[90vw] min-h-[100vh] mt-10">
+            <h1 className="text-4xl font-bold"> Projects</h1>
             <div>
               <Projects />
             </div>
@@ -56,7 +73,7 @@ export default function Home() {
         </IsInView>
 
         <IsInView setCurrent={setCurrent} id={3}>
-          <div id={sections[3]} className="flex items-center justify-center w-[100vw] h-[100vh]">
+          <div id={sections[3]} className="flex items-center justify-center w-[100vw] min-h-[100vh]">
             <div>
               <ContactMe />
             </div>

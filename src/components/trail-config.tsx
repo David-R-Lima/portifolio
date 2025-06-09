@@ -39,7 +39,7 @@ export function TrailConfig() {
       }, []);
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger><Settings></Settings></DialogTrigger>
+            <DialogTrigger asChild><Settings></Settings></DialogTrigger>
             <DialogContent className="z-50 bg-black">
                 <div>
                     <HexColorPicker onChange={(e) => {

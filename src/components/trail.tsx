@@ -1,11 +1,10 @@
 import { useTrail } from '@/context/useTrail';
-import { Pencil, Trash } from 'lucide-react';
-import React, { useState, useEffect, useRef, ReactNode } from 'react';
-import { TrailConfig } from './trail-config';
+import React, { useEffect, useRef, ReactNode } from 'react';
 
 interface Props {
     children: ReactNode
     current: number
+    className?: string
 }
 
 interface TrailDot {
@@ -14,7 +13,7 @@ interface TrailDot {
   timestamp?: number;
 }
 
-export function TrailEffect({children, current}: Props) {
+export function TrailEffect({children, current, className}: Props) {
   const { trail, permanentTrail, setTrail, setPermanentTrail, config, toMark, setToMark, setTrails, clearPermanentTrail } = useTrail()
 
   const trailRef = useRef<SVGSVGElement>(null);
@@ -93,7 +92,7 @@ export function TrailEffect({children, current}: Props) {
   }, [config, trail, setTrail, setTrails]);
 
   return (
-    <div className="w-full h-full">
+    <div className={className}>
       {children}
       <svg ref={trailRef} className="absolute top-0 left-0 w-full h-full z-10 pointer-events-none overflow-visible" style={{ userSelect: "none"}}>
         {trail.length > 1 && (
@@ -123,12 +122,6 @@ export function TrailEffect({children, current}: Props) {
           )}
         </svg>
       ))}
-      <div className='fixed top-0 left-0 flex flex-col space-y-4 items-center bg-slate-900 p-4 rounded-br-2xl'>
-        <TrailConfig></TrailConfig>
-        <Trash className='size-6 hover:cursor-pointer' onClick={() => {
-          clearPermanentTrail()
-        }}></Trash>
-      </div>
     </div>
   );
 };

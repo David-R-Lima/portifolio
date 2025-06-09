@@ -38,7 +38,7 @@ export function ContactMe() {
     return (
       <div className="flex flex-col space-x-2 w-[50vw]">
         <div className="space-y-4 p-4 text-center">
-          <h1 className="text-2xl font-bold">Contact me!</h1>
+          <h1 className="text-4xl font-bold">Contact me!</h1>
           <div className="flex flex-row space-x-4 items-center justify-center">
             <a href="https://github.com/David-R-Lima">
               <FaGithub className="size-8" />
@@ -59,28 +59,17 @@ export function ContactMe() {
           <h1 className="text-center italic">Or send me a message!</h1>
         </div>
         <form onSubmit={handleSubmit(handleSubmitForm)} style={{ userSelect: "none"}} className="p-4 rounded-lg">
-            <div className="flex flex-col space-y-2" style={{ userSelect: "none"}}>
-              {/* <div className="flex items-center space-x-2">
-                  <Input className="bg-black" type="text" placeholder="Name" style={{ userSelect: "none"}} {...register('name')}/>
-                  {errors.name && (
-                      <p className="text-red-500">{errors.name.message}</p>
-                  )}
-                  <Input className="bg-black" type="email" placeholder="Email" style={{ userSelect: "none"}} {...register('email')} />
-                  {errors.email && (
-                      <p className="text-red-500">{errors.email.message}</p>
-                  )}
-                  <Input className="bg-black" type="text" placeholder="Phone" style={{ userSelect: "none"}} {...register('email')} />
-                  {errors.email && (
-                      <p className="text-red-500">{errors.email.message}</p>
-                  )}
-              </div> */}
-              <Textarea className="bg-black h-auto min-h-[100px]" placeholder="Message" style={{ userSelect: "none"}} {...register('message')} />
+            <div className="flex flex-col items-center space-y-2" style={{ userSelect: "none"}}>
+              <Textarea className="bg-black h-auto min-h-[100px] min-w-[90vw] md:min-w-[70vw]" placeholder="Message" style={{ userSelect: "none"}} {...register('message')} />
               {errors.message && (
                   <p className="text-red-500">{errors.message.message}</p>
               )}
             </div>
             <div className="text-center mt-4 rounded-lg hover:text-primary hover:cursor-pointer">
-              <button type="submit" style={{ userSelect: "none"}}>Send</button>
+              <button type="submit" style={{ userSelect: "none"}} onClick={(e) => {
+                e.preventDefault();
+                alert("WIP!")
+              }}>Send</button>
             </div>
         </form>
       </div>
