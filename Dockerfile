@@ -6,17 +6,8 @@ ENV NODE_ENV="production"
 COPY . /app
 WORKDIR /app
 
-RUN npm install -g pnpm@8.4.0 && pnpm install
+RUN npm install -g pnpm && pnpm install
 
-FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
-
-FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run build
-
-FROM base
-COPY --from=prod-deps /app/node_modules /app/node_modules
-COPY --from=build /app /app
+RUN pnpm build
 
 CMD [ "pnpm", "start" ]
