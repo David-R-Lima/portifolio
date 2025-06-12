@@ -15,9 +15,9 @@ export function NowListening() {
 
     if(data) {
         return (
-            <div className="bg-primary/10 p-4 rounded-md">
+            <div className="text-secondary bg-primary/10 p-4 rounded-md">
                 <h1 className="text-lg font-bold mb-2">Now Listening</h1>
-                <div className="flex items-center space-x-2 text-white">
+                <div className="flex items-center space-x-2">
                     <div>
                         {data.song.img_url ? (
                             <img src={data.song.img_url} alt={data.song.title} className="w-16 h-16 rounded-md" />

@@ -36,7 +36,7 @@ export function ContactMe() {
       }
 
     return (
-      <div className="flex flex-col space-x-2 w-[50vw]">
+      <div className="flex flex-col space-x-2 w-[50vw] text-secondary">
         <div className="space-y-4 p-4 text-center">
           <h1 className="text-4xl font-bold">Contact me!</h1>
           <div className="flex flex-row space-x-4 items-center justify-center">
@@ -60,7 +60,7 @@ export function ContactMe() {
         </div>
         <form onSubmit={handleSubmit(handleSubmitForm)} style={{ userSelect: "none"}} className="p-4 rounded-lg">
             <div className="flex flex-col items-center space-y-2" style={{ userSelect: "none"}}>
-              <Textarea className="bg-black h-auto min-h-[100px] min-w-[90vw] md:min-w-[70vw]" placeholder="Message" style={{ userSelect: "none"}} {...register('message')} />
+              <Textarea className="bg-background h-auto min-h-[100px] min-w-[90vw] md:min-w-[70vw]" placeholder="Message" style={{ userSelect: "none"}} {...register('message')} />
               {errors.message && (
                   <p className="text-red-500">{errors.message.message}</p>
               )}
