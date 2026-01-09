@@ -13,14 +13,14 @@ export function NowListening() {
         refetchInterval: 10000, // Refetch every 10 seconds
     })
 
-    if(data) {
+    if(data && data.song) {
         return (
             <div className="text-secondary bg-primary/10 p-4 rounded-md">
                 <h1 className="text-lg font-bold mb-2">Now Listening</h1>
                 <div className="flex items-center space-x-2">
                     <div>
-                        {data.song.img_url ? (
-                            <img src={data.song.img_url} alt={data.song.title} className="w-16 h-16 rounded-md" />
+                        {data.song?.img_url ? (
+                            <img src={data.song?.img_url} alt={data.song.title} className="w-16 h-16 rounded-md" />
                         ) : (
                             <div className="w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center">
                                 <span className="text-gray-500">No Image</span>
