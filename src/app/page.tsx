@@ -80,7 +80,7 @@ export default function Home() {
         </IsInView>
 
         <IsInView setCurrent={setCurrent} id={3}>
-          <div id={sections[3]} className="flex items-center justify-center w-[100vw] min-h-[100vh]">
+          <div id={sections[3]} className="flex items-center justify-center w-[100vw] min-h-[50vh]">
             <div>
               <ContactMe />
             </div>

@@ -1,39 +1,39 @@
 "use client"
 
-import { sendMail } from "@/services/email"
-import { Input } from "./ui/input"
-import { Textarea } from "./ui/text-area"
-import { useForm } from 'react-hook-form'
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useMutation } from "@tanstack/react-query"
-import { schema } from "@/services/email/types"
-import { Schema } from "@/services/email/types"
-import { FaGithub, FaDiscord } from "react-icons/fa"
+// import { sendMail } from "@/services/email"
+// import { Input } from "./ui/input"
+// import { Textarea } from "./ui/text-area"
+// import { useForm } from 'react-hook-form'
+// import { zodResolver } from "@hookform/resolvers/zod"
+// import { useMutation } from "@tanstack/react-query"
+// import { schema } from "@/services/email/types"
+// import { Schema } from "@/services/email/types"
+import { FaGithub, FaDiscord, FaWhatsapp } from "react-icons/fa"
 import { CiLinkedin } from "react-icons/ci"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card"
 
 export function ContactMe() {
 
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        watch,
-        formState: { errors },
-      } = useForm<Schema>({
-        resolver: zodResolver(schema),
-      })
+    // const {
+    //     register,
+    //     handleSubmit,
+    //     setValue,
+    //     watch,
+    //     formState: { errors },
+    //   } = useForm<Schema>({
+    //     resolver: zodResolver(schema),
+    //   })
 
 
-      const submitMutation = useMutation({
-        mutationFn: sendMail,
-        onSuccess: () => setValue('message', ''),
-        onError: (error) => console.log(error),
-      })
+    //   const submitMutation = useMutation({
+    //     mutationFn: sendMail,
+    //     onSuccess: () => setValue('message', ''),
+    //     onError: (error) => console.log(error),
+    //   })
       
-      const handleSubmitForm = (data: Schema) => {
-        submitMutation.mutate(data)
-      }
+    //   const handleSubmitForm = (data: Schema) => {
+    //     submitMutation.mutate(data)
+    //   }
 
     return (
       <div className="flex flex-col space-x-2 w-[50vw] text-secondary">
@@ -53,9 +53,17 @@ export function ContactMe() {
                 <p className="text-white">ishol_aris</p>
               </HoverCardContent>
             </HoverCard>
+            <HoverCard openDelay={0}>
+              <HoverCardTrigger >            
+                <FaWhatsapp className="size-8"/>
+              </HoverCardTrigger>
+              <HoverCardContent side="right"className="flex items-center space-x-2 bg-black border-2 border-primary">
+                <p className="text-white">+55 33 9148-7038</p>
+              </HoverCardContent>
+            </HoverCard>
           </div>
         </div>
-        <div className="p-2">
+        {/* <div className="p-2">
           <h1 className="text-center italic">Or send me a message!</h1>
         </div>
         <form onSubmit={handleSubmit(handleSubmitForm)} style={{ userSelect: "none"}} className="p-4 rounded-lg">
@@ -71,7 +79,7 @@ export function ContactMe() {
                 alert("WIP!")
               }}>Send</button>
             </div>
-        </form>
+        </form> */}
       </div>
     )
 }
