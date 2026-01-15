@@ -15,7 +15,7 @@ export function NowListening() {
 
     if(data && data.song) {
         return (
-            <div className="text-secondary bg-primary/10 p-4 rounded-md">
+            <div className="text-secondary bg-primary p-4 rounded-md">
                 <h1 className="text-lg font-bold mb-2">Now Listening</h1>
                 <div className="flex items-center space-x-2">
                     <div>
@@ -28,7 +28,7 @@ export function NowListening() {
                         )}
                     </div>
                     <div className="min-w-[250px] max-w-[280px] overflow-hidden whitespace-nowrap">
-                        <a href={data.song.youtube_url} target="_blank" rel="noopener noreferrer" className={`inline-block hover:underline hover:text-primary ${data.song.title.length > 25 ? "animate-scroll" : ""}`}>{data.song.title}</a>
+                        <a href={data.song.youtube_url} target="_blank" rel="noopener noreferrer" className={`inline-block hover:underline hover:text-secondary-foreground ${data.song.title.length > 25 ? "animate-scroll" : ""}`}>{data.song.title}</a>
                         {data.song.title.length > 25 && (
                             <a href={data.song.youtube_url} target="_blank" rel="noopener noreferrer" className={`inline-block px-4 hover:underline hover:text-primary ${data.song.title.length > 25 ? "animate-scroll" : ""}`}>{data.song.title}</a>
                         )} 
