@@ -38,7 +38,7 @@ export function ContactMe() {
     return (
       <div className="flex flex-col space-x-2 w-[50vw] text-secondary">
         <div className="space-y-4 p-4 text-center">
-          <h1 className="text-4xl font-bold">Contact me!</h1>
+          <h1 className="text-4xl font-bold ">Contact me!</h1>
           <div className="flex flex-row space-x-4 items-center justify-center">
             <a href="https://github.com/David-R-Lima">
               <FaGithub className="size-8" />

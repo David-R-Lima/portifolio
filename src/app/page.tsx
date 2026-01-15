@@ -36,17 +36,17 @@ export default function Home() {
         <h1><a href="#projects" className={`z-50 hover:cursor-pointer ${current === 2 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>Projects</a></h1>
         <h1><a href="#contactme" className={`z-50 hover:cursor-pointer ${current === 3 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>Contact me</a></h1>
       </div>
-      <div className="flex flex-col space-y-2 fixed bottom-2 left-2 bg-primary/20 rounded-lg z-20">
-        <a href="#home" className="hover:cursor-pointer hover:bg-primary/40 rounded-lg p-2">
+      <div className="flex flex-col space-y-2 fixed bottom-2 left-2 bg-primary rounded-lg z-20">
+        <a href="#home" className="hover:cursor-pointer hover:bg-secondary rounded-lg p-2">
           <ChevronUp className="size-6" />
         </a>
         <div>
           <ChangeTheme></ChangeTheme>
         </div>
-        <div className="hover:cursor-pointer hover:bg-primary/40 rounded-lg p-2">
+        <div className="hover:cursor-pointer hover:bg-secondary rounded-lg p-2">
           <TrailConfig></TrailConfig>
         </div>
-        <div className="hover:cursor-pointer hover:bg-primary/40 rounded-lg p-2">
+        <div className="hover:cursor-pointer hover:bg-secondary rounded-lg p-2">
           <Trash className="size-6" onClick={() => {
             clearPermanentTrail()
           }}></Trash>
@@ -56,10 +56,10 @@ export default function Home() {
       <TrailEffect current={current} className="flex flex-col items-center justify-center" >
         <IsInView setCurrent={setCurrent} id={0}>
           <div id={sections[0]} className="flex flex-col items-start justify-center w-[90vw] md:w-[60vw] min-h-[100vh] z-20 space-y-2">
-            <h1 className="text-4xl z-20 text-start text-secondary" style={{ userSelect: "none"}}>Hello! My name is <span className="font-extrabold text-primary text-4xl">DAVID</span>, and I am a fullstack developer.</h1>
-            <h1 className="text-3xl font-bold text-primary">Thanks for checking out my portifolio!</h1>
-            <h1 className="text-2xl text-secondary">Click here to download my <a className="underline text-primary" target="_blank" href="/resume.pdf">Resume</a>,</h1>
-            <h1 className="text-xl text-secondary">or <span className="font-bold text-primary">scroll</span> down to see more about myself!</h1>
+            <h1 className="text-4xl z-20 text-start text-primary" style={{ userSelect: "none"}}>Hello! My name is <span className="font-extrabold text-secondary text-4xl">DAVID</span>, and I am a fullstack developer.</h1>
+            <h1 className="text-3xl font-bold text-secondary">Thanks for checking out my portifolio!</h1>
+            <h1 className="text-2xl text-primary">Click here to download my <a className="underline text-secondary" target="_blank" href="/resume.pdf">Resume</a>,</h1>
+            <h1 className="text-xl text-primary">or <span className="font-bold text-secondary">scroll</span> down to see more about myself!</h1>
           </div>
         </IsInView>
         <IsInView setCurrent={setCurrent} id={1}>
