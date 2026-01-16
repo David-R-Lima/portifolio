@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReactQueryProvider } from "@/components/providers/react-query-provider";
 import { WorkInProgress } from "@/components/work-in-progres";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { LangProvider } from "@/components/providers/language-providert";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html>
       <ReactQueryProvider>
+
           <body className={inter.className}>
             <ThemeProvider
               attribute={'class'}
@@ -27,7 +29,9 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              {children}
+              <LangProvider>
+                {children}
+              </LangProvider>
               <WorkInProgress></WorkInProgress>
             </ThemeProvider>
           </body>

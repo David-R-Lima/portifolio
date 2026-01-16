@@ -1,5 +1,6 @@
 "use client"
 
+import { useLang } from "@/context/useLang"
 import { ListeningTo } from "@/services/listening-to"
 import { useQuery } from "@tanstack/react-query"
 
@@ -13,10 +14,12 @@ export function NowListening() {
         refetchInterval: 10000, // Refetch every 10 seconds
     })
 
+    const { lang } = useLang()
+
     if(data && data.song) {
         return (
             <div className="text-secondary bg-primary p-4 rounded-md">
-                <h1 className="text-lg font-bold mb-2">Now Listening</h1>
+                <h1 className="text-lg font-bold mb-2">{lang === 'PTBR' ? 'Ouvindo Agora' : 'Now Listening'}</h1>
                 <div className="flex items-center space-x-2">
                     <div>
                         {data.song?.img_url ? (

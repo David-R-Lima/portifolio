@@ -12,12 +12,15 @@ import { ChevronUp, Trash } from "lucide-react";
 import { TrailConfig } from "@/components/trail-config";
 import { useTrail } from "@/context/useTrail";
 import { ChangeTheme } from "@/components/change-theme";
+import { useLang } from "@/context/useLang";
+import { LangConfig } from "@/components/change-lang";
 
 const sections = ["home", "aboutme", "projects", "contactme"]
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
   const { clearPermanentTrail } = useTrail()
+  const { lang, text } = useLang()
 
   return (
     <main className="bg-background">
@@ -30,11 +33,12 @@ export default function Home() {
         </div>
         <a href={`#${sections[current === 3 ? 3 : current + 1]}`}><ChevronsDown></ChevronsDown></a>
       </div> */}
-      <div className={`${current > 0 ? "flex" : "hidden"} fixed bg-background justify-end items-center w-[100vw] h-[10vh] space-x-4 p-6`}>
-        <h1><a href="#home" className={`z-50 hover:cursor-pointer ${current === 0 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>Home</a></h1>
-        <h1><a href="#aboutme" className={`z-50 hover:cursor-pointer ${current === 1 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>About me</a></h1>
-        <h1><a href="#projects" className={`z-50 hover:cursor-pointer ${current === 2 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>Projects</a></h1>
-        <h1><a href="#contactme" className={`z-50 hover:cursor-pointer ${current === 3 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>Contact me</a></h1>
+      <div className={`z-50 flex fixed bg-background justify-start items-center w-[100vw] h-[10vh] space-x-4 p-8`}>
+        <h1><a href="#home" className={`z-50 hover:cursor-pointer ${current === 0 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>{text[lang].header.home}</a></h1>
+        <h1><a href="#aboutme" className={`z-50 hover:cursor-pointer ${current === 1 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>{text[lang].header.about}</a></h1>
+        <h1><a href="#projects" className={`z-50 hover:cursor-pointer ${current === 2 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>{text[lang].header.projects}</a></h1>
+        <h1><a href="#contactme" className={`z-50 hover:cursor-pointer ${current === 3 ? "text-primary border-b-2 border-primary" : "text-secondary"}`}>{text[lang].header.contact}</a></h1>
+        <LangConfig></LangConfig>
       </div>
       <div className="flex flex-col space-y-2 fixed bottom-2 left-2 bg-primary rounded-lg z-20">
         <a href="#home" className="hover:cursor-pointer hover:bg-secondary rounded-lg p-2">
@@ -56,10 +60,10 @@ export default function Home() {
       <TrailEffect current={current} className="flex flex-col items-center justify-center" >
         <IsInView setCurrent={setCurrent} id={0}>
           <div id={sections[0]} className="flex flex-col items-start justify-center w-[90vw] md:w-[60vw] min-h-[100vh] z-20 space-y-2">
-            <h1 className="text-4xl z-20 text-start text-primary" style={{ userSelect: "none"}}>Hello! My name is <span className="font-extrabold text-secondary text-4xl">DAVID</span>, and I am a fullstack developer.</h1>
-            <h1 className="text-3xl font-bold text-secondary">Thanks for checking out my portifolio!</h1>
-            <h1 className="text-2xl text-primary">Click here to download my <a className="underline text-secondary" target="_blank" href="/resume.pdf">Resume</a>,</h1>
-            <h1 className="text-xl text-primary">or <span className="font-bold text-secondary">scroll</span> down to see more about myself!</h1>
+            <h1 className="text-4xl z-20 text-start text-primary" style={{ userSelect: "none"}}>{text[lang].mainTitle["1"]}<span className="font-extrabold text-secondary text-4xl">{text[lang].mainTitle["2"]}</span>{text[lang].mainTitle["3"]}</h1>
+            <h1 className="text-3xl font-bold text-secondary">{text[lang].mainTitle["4"]}</h1>
+            <h1 className="text-2xl text-primary">{text[lang].mainTitle["5"]}<a className="underline text-secondary" target="_blank" href={lang === "PTBR" ? "/curriculo.pdf" : "/resume.pdf"}>{text[lang].mainTitle["6"]}</a>,</h1>
+            <h1 className="text-xl text-primary">{text[lang].mainTitle["7"]} <span className="font-bold text-secondary">{text[lang].mainTitle["8"]}</span> {text[lang].mainTitle["9"]}</h1>
           </div>
         </IsInView>
         <IsInView setCurrent={setCurrent} id={1}>
@@ -72,7 +76,9 @@ export default function Home() {
 
         <IsInView setCurrent={setCurrent} id={2}>
           <div id={sections[2]} className="flex flex-col items-center justify-center w-[90vw] min-h-[100vh] mt-10">
-            <h1 className="text-4xl font-bold text-secondary"> Projects</h1>
+            <h1 className="text-4xl font-bold text-secondary"> 
+              {text[lang].projects['1']}
+            </h1>
             <div>
               <Projects />
             </div>
