@@ -38,7 +38,7 @@ export function Projects() {
           {text[lang].projects['14']}
         </div>
         <div className="flex items-center space-x-2 text-secondary-foreground">
-          <p>{text[lang].projects['15']} </p> <a className="underline hover:text-secondary" href="https://github.com/David-R-Lima/tauri-ui">https://github.com/David-R-Lima/tauri-ui</a>
+          <p>{text[lang].projects['15']} </p> <a className="underline hover:text-secondary" href="https://github.com/David-R-Lima/yt-ui-next">https://github.com/David-R-Lima/yt-ui-next</a>
         </div>
       </div>
       <div className="p-4 max-w-[90vw] space-y-2 rounded-lg bg-primary text-secondary">

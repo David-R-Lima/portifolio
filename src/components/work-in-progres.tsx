@@ -33,15 +33,15 @@ export function WorkInProgress() {
 
   return (
     <div className="absolute top-0 bg-black/90 flex flex-col items-center justify-center text-primary p-4 text-center z-50 w-[100vw] h-[100vh]">
-        <div className='flex flex-col items-center justify-center bg-black w-[50vw] space-y-4'>
-            <p>
-                <Construction />
+        <div className='flex flex-col items-center justify-center bg-black w-[90vw] md:w-[50vw] space-y-4 p-4'>
+            <p >
+                <Construction className='' />
             </p>
-            <p className="text-sm">
+            <p className="text-sm text-white">
                 This portifolio is a work in progress. Please check back later!
             </p>
             <button
-                className="mt-2 text-xs underline"
+                className="mt-2 text-xs underline text-white"
                 onClick={dismiss}
                 type="button"
             >

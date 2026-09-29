@@ -23,7 +23,7 @@ export function NowListening() {
                 <div className="flex items-center space-x-2">
                     <div>
                         {data.song?.img_url ? (
-                            <img src={data.song?.img_url} alt={data.song.title} className="w-16 h-16 rounded-md" />
+                            <img src={data.song?.img_url} alt={data.song.title} className="object-cover w-16 h-16 rounded-md" />
                         ) : (
                             <div className="w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center">
                                 <span className="text-gray-500">No Image</span>

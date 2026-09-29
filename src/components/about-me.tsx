@@ -92,10 +92,10 @@ const otherTechnologies = [
         title: 'Docker',
         icon: <FaDocker />
     },
-    {
-        title: 'Kafka',
-        icon: <SiApachekafka />
-    },
+    // {
+    //     title: 'Kafka',
+    //     icon: <SiApachekafka />
+    // },
     {
         title: 'RESTful APIs',
         icon: <TbApi />

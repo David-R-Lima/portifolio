@@ -47,7 +47,7 @@ export function ContactMe() {
               <FaGithub className="size-8" />
             </a>
             <a href="https://www.linkedin.com/in/david-lima-88a05533a/"><CiLinkedin className="size-8"/></a>
-            <HoverCard openDelay={0}>
+            {/* <HoverCard openDelay={0}>
               <HoverCardTrigger >            
                 <FaDiscord className="size-8"/>
               </HoverCardTrigger>
@@ -55,7 +55,7 @@ export function ContactMe() {
                 <img src="/ramBall.jpg" alt="" className="size-12 rounded-full overflow-hidden" />
                 <p className="text-white">ishol_aris</p>
               </HoverCardContent>
-            </HoverCard>
+            </HoverCard> */}
             <HoverCard openDelay={0}>
               <HoverCardTrigger >            
                 <FaWhatsapp className="size-8"/>
